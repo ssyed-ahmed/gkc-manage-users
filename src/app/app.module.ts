@@ -9,12 +9,16 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { HeaderComponent } from './header/header.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersListComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserDetailsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

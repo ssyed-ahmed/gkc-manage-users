@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from './user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -27,5 +27,18 @@ export class UserService {
       console.error(error);
       return of(result as T);
     };
+  }
+
+  deleteUser(user: User | string): Observable<User> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    const firstName = typeof user === 'string' ? user: user.firstName;
+    const url = `${this.usersUrl}/${firstName}`;
+
+    return this.httpClient.delete<User>(url, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>(`deleteUser`))
+      );
   }
 }

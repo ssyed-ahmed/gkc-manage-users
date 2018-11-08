@@ -14,6 +14,7 @@ export class UsersListComponent implements OnInit {
   users: User[];
   selectedUserFirstName: string;
   sortAscending = true;
+  userToDelete;
 
   constructor(
     private userService: UserService,
@@ -45,5 +46,16 @@ export class UsersListComponent implements OnInit {
       }
       return sortNum;
     })
+  }
+
+  deleteUser(user: User): void {
+    this.userToDelete = user;
+  }
+
+  deleteUserConfirmed(): void {
+    if (this.userToDelete) {
+      this.users = this.users.filter(h => h !== this.userToDelete);
+      this.userService.deleteUser(this.userToDelete).subscribe();
+    }
   }
 }

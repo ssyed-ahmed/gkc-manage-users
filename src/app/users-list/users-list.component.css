@@ -22,3 +22,13 @@
     cursor: pointer;
     color: cornflowerblue;
 }
+.user-modal-header {
+    background-color: #222;
+    color: #fff;
+  }
+.close-style {
+    color: #fff;
+}
+.title-style {
+    font-size: 1.6rem;
+}
