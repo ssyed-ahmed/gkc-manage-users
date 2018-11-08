@@ -12,6 +12,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class UsersListComponent implements OnInit {
 
   users: User[];
+  selectedUserFirstName: string;
+  sortAscending = true;
 
   constructor(
     private userService: UserService,
@@ -28,5 +30,20 @@ export class UsersListComponent implements OnInit {
       .subscribe(users => {
         this.users = users;
       })
+  }
+
+  isSelected(user: User) {
+    return user.firstName === this.selectedUserFirstName;
+  }
+
+  sortByName(): void {
+    this.sortAscending = !this.sortAscending;
+    this.users.sort((a: User, b: User) => {
+      let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
+      if (!this.sortAscending) {
+        sortNum = -sortNum;
+      }
+      return sortNum;
+    })
   }
 }

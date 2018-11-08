@@ -1,0 +1,24 @@
+.column-title {
+    font-weight: bold;
+}
+.action-link {
+    cursor: pointer;
+    padding-left: 15px;
+}
+.action-link:hover {
+    color: red;
+}
+.sort-style {
+    color: #000;
+}
+.sort-style:hover {
+    color: cornflowerblue;
+    cursor: pointer;
+}
+.user-detail-link {
+    cursor: pointer;
+}
+.user-detail-link:hover {
+    cursor: pointer;
+    color: cornflowerblue;
+}
