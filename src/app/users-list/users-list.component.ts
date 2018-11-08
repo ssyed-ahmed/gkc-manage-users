@@ -65,9 +65,5 @@ export class UsersListComponent implements OnInit {
 
   selectUser(firstName: string): void {
     this.router.navigate([firstName], {relativeTo: this.route});
-  }
-
-  onAddUser(): void {
-    alert('Add');
-  }
+  } 
 }

@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { PhoneFormat } from './phoneformat.pipe';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PhoneFormat } from './phoneformat.pipe';
     UserDetailsComponent,
     PageNotFoundComponent,
     UserSearchComponent,
-    PhoneFormat
+    PhoneFormat,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
