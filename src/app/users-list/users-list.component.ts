@@ -58,4 +58,8 @@ export class UsersListComponent implements OnInit {
       this.userService.deleteUser(this.userToDelete).subscribe();
     }
   }
+
+  selectUser(firstName: string): void {
+    this.router.navigate([firstName], {relativeTo: this.route});
+  }
 }

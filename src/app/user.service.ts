@@ -41,4 +41,12 @@ export class UserService {
         catchError(this.handleError<User>(`deleteUser`))
       );
   }
+
+  getUser(firstName: string): Observable<User> {
+    const url = `${this.usersUrl}/${firstName}`;
+    return this.httpClient.get<User>(url)
+      .pipe(
+        catchError(this.handleError<User>(`getUser firstName=${firstName}`))
+      );
+  }  
 }
