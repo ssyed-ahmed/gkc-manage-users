@@ -43,7 +43,7 @@
           <td class="user-field">{{user.lastName}}</td>
           <td class="user-field">{{user.username}}</td>
           <td class="user-field">
-            {{ user.phoneNumber }}
+            {{ user.phoneNumber | phoneFormat}}
           </td>
           <td class="user-field">
             <span *ngFor="let interest of user.interests; let k = index">
