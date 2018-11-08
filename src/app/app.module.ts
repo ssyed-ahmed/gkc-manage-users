@@ -11,6 +11,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { HeaderComponent } from './header/header.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     UsersListComponent,
     HeaderComponent,
     UserDetailsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,
