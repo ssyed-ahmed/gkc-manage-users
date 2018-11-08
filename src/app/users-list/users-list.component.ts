@@ -30,6 +30,10 @@ export class UsersListComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
         this.users = users;
+        this.users.sort((a: User, b: User) => {
+          let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
+          return sortNum;
+        })
       })
   }
 

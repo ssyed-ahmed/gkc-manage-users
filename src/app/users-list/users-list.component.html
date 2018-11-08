@@ -9,7 +9,7 @@
       <thead>
        <tr>
          <td class="column-title">
-           #
+           Avatar
          </td>
          <td class="column-title">
           First Name 
@@ -19,23 +19,37 @@
          <td class="column-title">
            Last Name
           </td>
-         <td class="column-title">
-           Phone Number
+          <td class="column-title">
+            Username
           </td>
          <td class="column-title">
+           Phone Number
+        </td>
+        <td class="column-title">
+          Interests
+        </td>
+        <td class="column-title">
            Action
          </td>
        </tr> 
       </thead>
       <tbody>
         <tr *ngFor="let user of users; let i = index" [class.selected-user]="isSelected(user)">
-          <td>{{i+1}}</td>
-          <td class="user-detail-link" (click)="selectUser(user.firstName, 'users')">{{user.firstName}}</td>
-          <td>{{user.lastName}}</td>
           <td>
+            <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" class="user-img">
+          </td>
+          <td class="user-detail-link user-field" (click)="selectUser(user.firstName, 'users')">{{user.firstName}}</td>
+          <td class="user-field">{{user.lastName}}</td>
+          <td class="user-field">{{user.username}}</td>
+          <td class="user-field">
             {{ user.phoneNumber }}
           </td>
-          <td>
+          <td class="user-field">
+            <span *ngFor="let interest of user.interests; let k = index">
+              {{interest}}<span *ngIf="k !== user.interests.length-1">,</span>
+            </span>
+          </td>
+          <td class="user-field">
             <i class="fas fa-times action-link delete-icon" (click)="deleteUser(user)" data-toggle="modal" data-target="#deleteUserModal"></i>
           </td>
         </tr>

@@ -4,6 +4,7 @@ export class User {
         public firstName: string,
         public lastName: string,
         public interests: string[],
-        public phoneNumber: number
+        public phoneNumber: number,
+        public imagePath: string
     ){}
 }
