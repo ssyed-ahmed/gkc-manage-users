@@ -31,7 +31,7 @@ export class UsersListComponent implements OnInit {
       .subscribe(message => {
         if (message.content.name === 'searchExecuted') {
           this.searchTerm = message.content.value;
-          this.filterUsers();
+          this.searchUsers();
         }
       })
   }
@@ -81,7 +81,7 @@ export class UsersListComponent implements OnInit {
     this.router.navigate([firstName], {relativeTo: this.route});
   } 
 
-  filterUsers(): void {
+  searchUsers(): void {
     this.userService.getUsers()
       .subscribe(users => {
         this.users = users.filter(item => {
