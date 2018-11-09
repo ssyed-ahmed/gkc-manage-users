@@ -85,7 +85,13 @@ export class UsersListComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => {
         this.users = users.filter(item => {
-          return item.username.includes(this.searchTerm)
+          let usernameResults = item.username.toLowerCase().includes(this.searchTerm.toLowerCase())
+          let result = '';
+          item.interests.forEach(obj => {
+            result += obj.toLowerCase() + ','
+          });
+          let interestsResults = result.includes(this.searchTerm.toLowerCase());
+          return usernameResults || interestsResults;
         })
         this.users.sort((a: User, b: User) => {
           let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
