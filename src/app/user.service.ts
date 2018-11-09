@@ -48,5 +48,5 @@ export class UserService {
       .pipe(
         catchError(this.handleError<User>(`getUser firstName=${firstName}`))
       );
-  }  
+  }
 }

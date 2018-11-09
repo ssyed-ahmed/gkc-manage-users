@@ -3,6 +3,8 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { EventService } from '../event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -15,12 +17,24 @@ export class UsersListComponent implements OnInit {
   selectedUserFirstName: string;
   sortAscending = true;
   userToDelete;
+  searchTerm;
+
+  subscription: Subscription;
 
   constructor(
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private eventService: EventService
+  ) {
+    this.subscription = this.eventService.getMessage()
+      .subscribe(message => {
+        if (message.content.name === 'searchExecuted') {
+          this.searchTerm = message.content.value;
+          this.filterUsers();
+        }
+      })
+  }
 
   ngOnInit() {
     this.getUsers();
@@ -66,4 +80,17 @@ export class UsersListComponent implements OnInit {
   selectUser(firstName: string): void {
     this.router.navigate([firstName], {relativeTo: this.route});
   } 
+
+  filterUsers(): void {
+    this.userService.getUsers()
+      .subscribe(users => {
+        this.users = users.filter(item => {
+          return item.username.includes(this.searchTerm)
+        })
+        this.users.sort((a: User, b: User) => {
+          let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
+          return sortNum;
+        })        
+      })
+  }
 }

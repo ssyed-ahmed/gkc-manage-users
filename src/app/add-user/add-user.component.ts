@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../user';
 
 @Component({
   selector: 'app-add-user',
@@ -7,22 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUserComponent implements OnInit {
 
-  interests: string[] = [
-    'Football',
-    'Cycling',
-    'DIY stuff'
-  ];
+  newUser: User = new User(
+    '',
+    '',
+    '',
+    [],
+    0,
+    ''
+  )
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  addInterest(interest): void {
+    this.newUser.interests.push(interest);
+  }
+
   deleteInterest(interest: string): void {
-    let index = this.interests.indexOf(interest);
+    let index = this.newUser.interests.indexOf(interest);
     if (index !== -1) {
-      this.interests.splice(index, 1);
+      this.newUser.interests.splice(index, 1);
     }
   }
 
+  onAddUser(): void {
+    this.router.navigate(['users']);
+  }
 }

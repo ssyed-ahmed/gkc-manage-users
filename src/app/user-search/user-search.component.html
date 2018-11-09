@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-xs-12">      
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchTerm">
       <span class="input-group-btn">
-        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+        <button class="btn btn-primary" type="button" (click)="searchUsers()"><i class="fas fa-search"></i></button>
       </span>
     </div>      
   </div>

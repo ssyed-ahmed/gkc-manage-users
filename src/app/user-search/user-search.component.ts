@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-user-search',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserSearchComponent implements OnInit {
 
-  constructor() { }
+  searchTerm: string = '';
+
+  constructor(private eventService: EventService) { }
 
   ngOnInit() {
+  }
+
+  searchUsers(): void {
+    this.eventService.sendMessage({'name': 'searchExecuted', value: this.searchTerm});
   }
 
 }
