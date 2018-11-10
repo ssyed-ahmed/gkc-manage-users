@@ -42,7 +42,7 @@
                   routerLink="/users/{{user.id}}">
             </div>
             <div *ngIf="user.imagePath === ''">
-              <div class="dummy-user">
+              <div class="dummy-user" routerLink="/users/{{user.id}}">
                 <i class="fas fa-user"></i>
               </div>
             </div>         

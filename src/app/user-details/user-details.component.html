@@ -25,7 +25,7 @@
                       <tr>
                           <td class="property-title">Interests:</td>
                           <td>
-                            <div class="interest" *ngFor="let interest of user.interests">
+                            <div class="interest" *ngFor="let interest of user.interests; let i = index;">
                               {{ interest }}
                             </div>                            
                           </td>
