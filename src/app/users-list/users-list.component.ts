@@ -33,6 +33,11 @@ export class UsersListComponent implements OnInit {
           this.searchTerm = message.content.value;
           this.searchUsers();
         }
+
+        if (message.content.name === 'userAdded') {
+          let newUser = message.content.value;
+          this.addUser(newUser);
+        }
       })
   }
 
@@ -98,5 +103,9 @@ export class UsersListComponent implements OnInit {
           return sortNum;
         })        
       })
+  }
+
+  addUser(newUser: User): void {
+    this.users.push(newUser);
   }
 }

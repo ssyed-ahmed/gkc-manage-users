@@ -49,4 +49,14 @@ export class UserService {
         catchError(this.handleError<User>(`getUser firstName=${firstName}`))
       );
   }
+
+  addUser(user: User): Observable<User> {
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    };
+    return this.httpClient.post<User>(this.usersUrl, user, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('addUser'))
+      );
+  }
 }

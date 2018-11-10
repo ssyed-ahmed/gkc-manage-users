@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user';
+import { UserService } from '../user.service';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-add-user',
@@ -10,19 +12,38 @@ import { User } from '../user';
 export class AddUserComponent implements OnInit {
 
   newUser: User = new User(
+    this.getRandomId(),
     '',
     '',
     '',
     [],
-    0,
+    555555555,
     ''
   )
 
+  isAddButtonDisabled: boolean = true;
+
   constructor(
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private eventService: EventService
   ) { }
 
   ngOnInit() {
+  }
+
+  checkInterest(event): void {
+    if (event.target.value !== '') {
+      this.isAddButtonDisabled = false;
+    } else {
+      this.isAddButtonDisabled = true;
+    }
+  }
+
+  getRandomId(): number {
+    let min = 10;
+    let max = 10000;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   addInterest(interest): void {
@@ -37,6 +58,10 @@ export class AddUserComponent implements OnInit {
   }
 
   onAddUser(): void {
-    this.router.navigate(['users']);
+    this.userService.addUser(this.newUser)
+      .subscribe(user => {
+        this.eventService.sendMessage({'name': 'userAdded', value: user});
+        this.router.navigate(['users']);
+      })    
   }
 }

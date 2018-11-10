@@ -8,18 +8,24 @@
       <form #addUserForm="ngForm" novalidate>
         <div class="form-group">
           <label for="firstName">First Name <span class="text-danger">*</span> :</label>
-          <input type="text" class="form-control" name="firstName" #firstName [(ngModel)]="newUser.firstName" required>
+          <input type="text" [class.is-invalid]="firstName.invalid && firstName.touched" 
+            class="form-control" id="firstName" name="firstName" placeholder="First name"
+            #firstName [(ngModel)]="newUser.firstName" required #firstName="ngModel">            
         </div>
         <div class="form-group">
           <label for="lastName">Last Name <span class="text-danger">*</span> :</label>
-          <input type="text" class="form-control" name="lastName" #lastName [(ngModel)]="newUser.lastName">
+          <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched"
+            class="form-control" name="lastName" placeholder="Last name"
+            #lastName [(ngModel)]="newUser.lastName" required>
         </div>
         <div class="form-group">
           <label for="username">Username <span class="text-danger">*</span> :</label>
-          <input type="text" class="form-control" name="username" #username [(ngModel)]="newUser.username">
+          <input type="text" [class.is-invalid]="username.invalid && username.touched"
+            class="form-control" name="username" placeholder="Username"
+            #username [(ngModel)]="newUser.username" required>
         </div>
         <div class="form-group">
-            <label for="">Interests:</label>
+            <label for="">Interests: <small>(Use the Add button to add multiple interests)</small></label>
             <div class="row">
               <div class="col-xs-12">
                 <div class="interest" *ngFor="let interest of newUser.interests">
@@ -29,18 +35,21 @@
             </div>
             <div class="row">
               <div class="col-xs-11">
-                  <input type="text" class="form-control" name="interest" #interestField>
+                  <input type="text" class="form-control" name="interest" 
+                    placeholder="Interest" #interestField (keyup)="checkInterest($event)">
               </div>
               <div class="col-xs-1">
-                <button class="btn btn-primary" (click)="addInterest(interestField.value); interestField.value = '';"><i class="fas fa-plus"></i> Add</button>
+                <button class="btn btn-primary" [disabled]="isAddButtonDisabled" (click)="addInterest(interestField.value); interestField.value = '';"><i class="fas fa-plus"></i> Add</button>
               </div>
             </div>
           </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number <span class="text-danger">*</span> :</label>
-          <input type="number" class="form-control" name="phoneNumber" #phoneNumber [(ngModel)]="newUser.phoneNumber">
+          <input type="number" [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched" 
+            class="form-control" name="phoneNumber" #phoneNumber placeholder="0000"
+            [(ngModel)]="newUser.phoneNumber">
         </div>
-        <button type="button" class="btn btn-success" (click)="onAddUser()">Submit</button>
+        <button type="button" [disabled]="addUserForm.form.invalid" class="btn btn-success" (click)="onAddUser()">Submit</button>
       </form>
   </div>
 </div>
