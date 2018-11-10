@@ -70,6 +70,7 @@ export class UsersListComponent implements OnInit {
 
   sortByName(): void {
     this.sortAscending = !this.sortAscending;
+    this.pagedData = this.pagedData.slice(0,3);
     this.pagedData.sort((a: User, b: User) => {
       let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
       if (!this.sortAscending) {
