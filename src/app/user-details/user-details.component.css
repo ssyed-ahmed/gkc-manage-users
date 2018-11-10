@@ -19,3 +19,14 @@
 .back-button {
     margin-left: 10px;
 }
+.dummy-user {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 200px;
+    font-size: 9rem;
+    color: #fff;
+    background-color: #000;
+}
