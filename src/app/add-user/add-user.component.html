@@ -10,19 +10,22 @@
           <label for="firstName">First Name <span class="text-danger">*</span> :</label>
           <input type="text" [class.is-invalid]="firstName.invalid && firstName.touched" 
             class="form-control" id="firstName" name="firstName" placeholder="First name"
-            #firstName [(ngModel)]="newUser.firstName" required #firstName="ngModel">            
+            [(ngModel)]="newUser.firstName" required #firstName="ngModel">
+            <small [hidden]="firstName.valid || firstName.untouched" class="text-danger error-style"><i class="fas fa-times-circle"></i> First Name is required.</small>
         </div>
         <div class="form-group">
           <label for="lastName">Last Name <span class="text-danger">*</span> :</label>
           <input type="text" [class.is-invalid]="lastName.invalid && lastName.touched"
             class="form-control" name="lastName" placeholder="Last name"
-            #lastName [(ngModel)]="newUser.lastName" required>
+            #lastName="ngModel" [(ngModel)]="newUser.lastName" required>
+            <small [hidden]="lastName.valid || lastName.untouched" class="text-danger error-style"><i class="fas fa-times-circle"></i> Last Name is required.</small>
         </div>
         <div class="form-group">
           <label for="username">Username <span class="text-danger">*</span> :</label>
           <input type="text" [class.is-invalid]="username.invalid && username.touched"
             class="form-control" name="username" placeholder="Username"
-            #username [(ngModel)]="newUser.username" required>
+            #username="ngModel" [(ngModel)]="newUser.username" required>
+            <small [hidden]="username.valid || username.untouched" class="text-danger error-style"><i class="fas fa-times-circle"></i> Username is required.</small>
         </div>
         <div class="form-group">
             <label for="">Interests: <small>(Use the Add button to add multiple interests)</small></label>
@@ -45,9 +48,13 @@
           </div>
         <div class="form-group">
           <label for="phoneNumber">Phone Number <span class="text-danger">*</span> :</label>
-          <input type="number" [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched" 
-            class="form-control" name="phoneNumber" #phoneNumber placeholder="0000"
-            [(ngModel)]="newUser.phoneNumber">
+          <input type="number" (blur)="validatePhoneNumber(phoneNumber.value)" 
+            (keyup)="validatePhoneNumber(phoneNumber.value)"
+            [class.is-invalid]="phoneNumber.invalid && phoneNumber.touched" 
+            class="form-control" name="phoneNumber" placeholder=""
+            [(ngModel)]="newUser.phoneNumber" #phoneNumber="ngModel">
+            <small *ngIf="phoneNumberHasError" class="text-danger"><i class="fas fa-times-circle"></i> Phone number is required.</small>
+            <small [hidden]="phoneNumber.valid || phoneNumber.untouched" class="text-danger error-style"><i class="fas fa-times-circle"></i> Phone number is required.</small>
         </div>
         <button type="button" [disabled]="addUserForm.form.invalid" class="btn btn-success" (click)="onAddUser()">Submit</button>
         <button type="button" class="btn btn-danger left-spacer" routerLink="/users">Cancel</button>

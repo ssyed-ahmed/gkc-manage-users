@@ -21,6 +21,8 @@ export class AddUserComponent implements OnInit {
     ''
   )
 
+  phoneNumberHasError = false;
+
   isAddButtonDisabled: boolean = true;
 
   constructor(
@@ -63,5 +65,13 @@ export class AddUserComponent implements OnInit {
         this.eventService.sendMessage({'name': 'userAdded', value: user});
         this.router.navigate(['users']);
       })    
+  }
+
+  validatePhoneNumber(value): void {
+    if (value == null || value === 0 || value === '') {
+      this.phoneNumberHasError = true;
+    } else {
+      this.phoneNumberHasError = false;
+    }
   }
 }
