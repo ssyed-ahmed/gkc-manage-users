@@ -36,7 +36,14 @@
       <tbody>
         <tr *ngFor="let user of users; let i = index" [class.selected-user]="isSelected(user)">
           <td>
-            <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" class="user-img">
+            <div *ngIf="user.imagePath !== ''">
+                <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" class="user-img">
+            </div>
+            <div *ngIf="user.imagePath === ''">
+              <div class="dummy-user">
+                <i class="fas fa-user"></i>
+              </div>
+            </div>         
           </td>
           <!-- <td class="user-detail-link user-field" (click)="selectUser(user.firstName, 'users')">{{user.firstName}}</td> -->
           <td class="user-field">{{user.firstName}}</td>

@@ -107,5 +107,9 @@ export class UsersListComponent implements OnInit {
 
   addUser(newUser: User): void {
     this.users.push(newUser);
+    this.users.sort((a: User, b: User) => {
+      let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
+      return sortNum;
+    })
   }
 }
