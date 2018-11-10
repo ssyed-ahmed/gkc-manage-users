@@ -22,7 +22,7 @@ export class UsersListComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 3;
   totalPages: number = 0;
-  pagedData: User[] = [];
+  pagedData: User[];
 
   subscription: Subscription;
 
@@ -85,7 +85,7 @@ export class UsersListComponent implements OnInit {
 
   deleteUserConfirmed(): void {
     if (this.userToDelete) {
-      this.users = this.users.filter(h => h !== this.userToDelete);
+      this.pagedData = this.pagedData.filter(h => h !== this.userToDelete);
       this.userService.deleteUser(this.userToDelete).subscribe();
     }
   }
@@ -125,7 +125,10 @@ export class UsersListComponent implements OnInit {
     if (dir == -1) {
       return this.currentPage === 0;
     }
-    return this.currentPage >= this.users.length/this.pageSize - 1;
+    if (this.users) {
+      return this.currentPage >= this.users.length/this.pageSize - 1;
+    }
+    return true;
   }
 
   paginate(multiplier): void {
