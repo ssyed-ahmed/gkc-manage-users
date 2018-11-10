@@ -42,11 +42,11 @@ export class UserService {
       );
   }
 
-  getUser(firstName: string): Observable<User> {
-    const url = `${this.usersUrl}/${firstName}`;
+  getUser(id: number): Observable<User> {
+    const url = `${this.usersUrl}/${id}`;
     return this.httpClient.get<User>(url)
       .pipe(
-        catchError(this.handleError<User>(`getUser firstName=${firstName}`))
+        catchError(this.handleError<User>(`getUser firstName=${id}`))
       );
   }
 

@@ -1,0 +1,21 @@
+.borderless td, .borderless th {
+    border: none;
+}
+.property-title {
+    font-weight: bold;
+}
+.top-spacer {
+    margin-top: 20px;
+}
+.bottom-spacer {
+    margin-bottom: 20px;
+}
+.user-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+.back-button {
+    margin-left: 10px;
+}

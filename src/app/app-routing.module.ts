@@ -9,7 +9,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: UsersListComponent},
-  { path: 'user-details/:firstName', component: UserDetailsComponent},
+  { path: 'users/:id', component: UserDetailsComponent},
   { path: 'add-user', component: AddUserComponent },
   { path: "**", component: PageNotFoundComponent }
 ];

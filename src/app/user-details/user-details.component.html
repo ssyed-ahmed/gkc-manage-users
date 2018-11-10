@@ -1,3 +1,56 @@
-<p>
-  user-details works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+      <div class="panel panel-default">
+          <div class="panel-heading">User Details</div>
+          <div class="row top-spacer">
+            <div class="col-xs-8">
+                <table class="table borderless">
+                    <tbody>
+                      <tr>
+                        <td class="property-title">First Name:</td>
+                        <td>{{ user.firstName }}</td>
+                      </tr>
+                      <tr>
+                        <td class="property-title">Last Name:</td>
+                        <td>{{ user.lastName }}</td>
+                      </tr>                      
+                      <tr>
+                        <td class="property-title">Username:</td>
+                        <td>{{ user.username }}</td>
+                      </tr>
+                      <tr>
+                        <td class="property-title">Phone Number:</td>
+                        <td>{{ user.phoneNumber | phoneFormat }}</td>
+                      </tr>
+                      <tr>
+                          <td class="property-title">Interests:</td>
+                          <td>
+                            <div class="interest" *ngFor="let interest of user.interests">
+                              {{ interest }}
+                            </div>                            
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-xs-4">
+                <div *ngIf="user.imagePath !== ''" class="pull-right">
+                    <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" 
+                      class="user-img" 
+                      routerLink="/users/{{user.id}}">
+                </div>
+                <div *ngIf="user.imagePath === ''">
+                  <div class="dummy-user">
+                    <i class="fas fa-user"></i>
+                  </div>
+                </div>
+            </div>
+          </div>   
+          <div class="row top-spacer bottom-spacer">
+            <div class="col-xs-12">
+              <button class="btn btn-primary back-button" (click)="goBack()">Go Back</button>
+            </div>
+          </div>       
+        </div>
+  </div>
+</div>

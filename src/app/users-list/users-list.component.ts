@@ -18,6 +18,8 @@ export class UsersListComponent implements OnInit {
   sortAscending = true;
   userToDelete;
   searchTerm;
+  selectedPage = 1;
+  pages = [1,2,3];
 
   subscription: Subscription;
 
@@ -82,8 +84,8 @@ export class UsersListComponent implements OnInit {
     }
   }
 
-  selectUser(firstName: string): void {
-    this.router.navigate([firstName], {relativeTo: this.route});
+  selectUser(user: User): void {
+    this.router.navigate([user.id], {relativeTo: this.route});
   } 
 
   searchUsers(): void {

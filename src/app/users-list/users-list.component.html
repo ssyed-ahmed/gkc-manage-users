@@ -37,7 +37,9 @@
         <tr *ngFor="let user of users; let i = index" [class.selected-user]="isSelected(user)">
           <td>
             <div *ngIf="user.imagePath !== ''">
-                <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" class="user-img">
+                <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" 
+                  class="user-img" 
+                  routerLink="/users/{{user.id}}">
             </div>
             <div *ngIf="user.imagePath === ''">
               <div class="dummy-user">
@@ -63,6 +65,16 @@
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+      <ul class="pagination pull-right">
+          <li *ngFor="let page of pages" routerLink="/users/{{ page }}" routerLinkActive="active">
+            <a href="#">{{ page }}</a>
+          </li>
+          <!-- <li class="active"><a href="#">2</a></li> -->
+        </ul>
   </div>
 </div>
 <div class="row">
