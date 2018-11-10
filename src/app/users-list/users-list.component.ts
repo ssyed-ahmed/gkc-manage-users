@@ -115,11 +115,12 @@ export class UsersListComponent implements OnInit {
   }
 
   addUser(newUser: User): void {
-    this.pagedData.push(newUser);
-    this.pagedData.sort((a: User, b: User) => {
+    this.users.push(newUser);
+    this.users.sort((a: User, b: User) => {
       let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
       return sortNum;
     })
+    this.pagedData = this.users;
   }
 
   pageButtonDisabled(dir): boolean {
