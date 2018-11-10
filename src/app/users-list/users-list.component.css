@@ -67,6 +67,9 @@
     background-color: #000;
     cursor: pointer;
 }
-.page {
-    cursor: pointer;
+.left-spacer {
+    margin-left: 15px;
+}
+.page-text {
+    margin-top: 15px;
 }

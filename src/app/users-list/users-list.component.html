@@ -34,7 +34,7 @@
        </tr> 
       </thead>
       <tbody>
-        <tr *ngFor="let user of users; let i = index" [class.selected-user]="isSelected(user)">
+        <tr *ngFor="let user of pagedData | slice: 0: pageSize; let i = index" [class.selected-user]="isSelected(user)">
           <td>
             <div *ngIf="user.imagePath !== ''">
                 <img src="{{user.imagePath}}" alt="{{user.firstName + user.lastName}}" 
@@ -69,12 +69,17 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-      <ul class="pagination pull-right">
-          <li *ngFor="let page of pages" routerLink="/users/{{ page }}" routerLinkActive="active">
-            <a href="#">{{ page }}</a>
-          </li>
-          <!-- <li class="active"><a href="#">2</a></li> -->
-        </ul>
+    <div class="pull-right">
+      <button class="btn btn-primary" [disabled]="pageButtonDisabled(-1)" (click)="paginate(-1)">Previous</button>
+      <button class="btn btn-primary left-spacer" [disabled]="pageButtonDisabled(1)" (click)="paginate(1)">Next</button>
+    </div>      
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+      <div class="page-text pull-right">
+          Page {{ currentPage+1 }} of {{ totalPages }}
+      </div>      
   </div>
 </div>
 <div class="row">

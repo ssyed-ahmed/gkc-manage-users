@@ -18,8 +18,11 @@ export class UsersListComponent implements OnInit {
   sortAscending = true;
   userToDelete;
   searchTerm;
-  selectedPage = 1;
-  pages = [1,2,3];
+
+  currentPage: number = 0;
+  pageSize: number = 3;
+  totalPages: number = 0;
+  pagedData: User[] = [];
 
   subscription: Subscription;
 
@@ -55,6 +58,9 @@ export class UsersListComponent implements OnInit {
           let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
           return sortNum;
         })
+
+        this.totalPages = Math.ceil(this.users.length / this.pageSize);
+        this.pagedData = this.users;
       })
   }
 
@@ -64,7 +70,7 @@ export class UsersListComponent implements OnInit {
 
   sortByName(): void {
     this.sortAscending = !this.sortAscending;
-    this.users.sort((a: User, b: User) => {
+    this.pagedData.sort((a: User, b: User) => {
       let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
       if (!this.sortAscending) {
         sortNum = -sortNum;
@@ -91,7 +97,7 @@ export class UsersListComponent implements OnInit {
   searchUsers(): void {
     this.userService.getUsers()
       .subscribe(users => {
-        this.users = users.filter(item => {
+        this.pagedData = users.filter(item => {
           let usernameResults = item.username.toLowerCase().includes(this.searchTerm.toLowerCase())
           let result = '';
           item.interests.forEach(obj => {
@@ -100,7 +106,7 @@ export class UsersListComponent implements OnInit {
           let interestsResults = result.includes(this.searchTerm.toLowerCase());
           return usernameResults || interestsResults;
         })
-        this.users.sort((a: User, b: User) => {
+        this.pagedData.sort((a: User, b: User) => {
           let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
           return sortNum;
         })        
@@ -108,10 +114,24 @@ export class UsersListComponent implements OnInit {
   }
 
   addUser(newUser: User): void {
-    this.users.push(newUser);
-    this.users.sort((a: User, b: User) => {
+    this.pagedData.push(newUser);
+    this.pagedData.sort((a: User, b: User) => {
       let sortNum = a.firstName < b.firstName ? -1 : a.firstName > b.firstName ? 1: 0;
       return sortNum;
     })
   }
+
+  pageButtonDisabled(dir): boolean {
+    if (dir == -1) {
+      return this.currentPage === 0;
+    }
+    return this.currentPage >= this.users.length/this.pageSize - 1;
+  }
+
+  paginate(multiplier): void {
+    this.currentPage = this.currentPage + (multiplier * 1);
+    this.pagedData = this.users.slice(this.currentPage * this.pageSize);
+  }
+
+
 }
