@@ -9,10 +9,9 @@
     color: red;
 }
 .sort-style {
-    color: #000;
+    color: cornflowerblue;
 }
 .sort-style:hover {
-    color: cornflowerblue;
     cursor: pointer;
 }
 .user-detail-link {
