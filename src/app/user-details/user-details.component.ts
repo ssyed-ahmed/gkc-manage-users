@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { Location } from '@angular/common';
 import { ParamMap } from '@angular/router/src/shared';
 import { User } from '../user';
+import { PhoneFormat } from '../phoneformat.pipe';
 
 @Component({
   selector: 'app-user-details',

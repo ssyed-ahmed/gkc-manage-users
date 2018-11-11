@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UserSearchComponent } from './user-search/user-search.component';
 import { PhoneFormat } from './phoneformat.pipe';
 import { AddUserComponent } from './add-user/add-user.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AddUserComponent } from './add-user/add-user.component';
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule,
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
