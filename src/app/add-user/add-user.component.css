@@ -17,3 +17,11 @@
 .error-style {
     padding-top: 10px;
 }
+.close-style {
+    font-size: 5rem;
+    color: #000;
+}
+.close-style:hover {
+    color: cornflowerblue;
+    cursor: pointer;
+}
