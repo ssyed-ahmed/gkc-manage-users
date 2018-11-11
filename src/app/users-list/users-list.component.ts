@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class UsersListComponent implements OnInit {
 
   users: User[];
-  selectedUserFirstName: string;
+  selectedUserId: number;
   sortAscending = true;
   userToDelete;
   searchTerm;
@@ -48,6 +48,10 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = parseInt(params.get('id'));
+      this.selectedUserId = id;
+    })
   }
 
   getUsers(): void {
@@ -65,7 +69,7 @@ export class UsersListComponent implements OnInit {
   }
 
   isSelected(user: User) {
-    return user.firstName === this.selectedUserFirstName;
+    return user.id === this.selectedUserId;
   }
 
   sortByName(): void {

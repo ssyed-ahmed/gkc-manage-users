@@ -72,3 +72,6 @@
 .page-text {
     margin-top: 15px;
 }
+.selected-user {
+    border: 2px solid gold;
+}
