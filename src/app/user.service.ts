@@ -29,15 +29,18 @@ export class UserService {
     };
   }
 
-  deleteUser(user: User | string): Observable<User> {
+  deleteUser(user: User | number): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
-    const firstName = typeof user === 'string' ? user: user.firstName;
-    const url = `${this.usersUrl}/${firstName}`;
+    const id = typeof user === 'number' ? user: user.id;
+    const url = `${this.usersUrl}/${id}`;
 
     return this.httpClient.delete<User>(url, httpOptions)
       .pipe(
+        tap(_ => {
+          
+        }),
         catchError(this.handleError<User>(`deleteUser`))
       );
   }
@@ -56,6 +59,9 @@ export class UserService {
     };
     return this.httpClient.post<User>(this.usersUrl, user, httpOptions)
       .pipe(
+        tap((user: User) => {
+          
+        }),
         catchError(this.handleError<User>('addUser'))
       );
   }

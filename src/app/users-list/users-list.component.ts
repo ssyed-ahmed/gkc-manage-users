@@ -86,7 +86,8 @@ export class UsersListComponent implements OnInit {
 
   deleteUserConfirmed(): void {
     if (this.userToDelete) {
-      this.pagedData = this.pagedData.filter(h => h !== this.userToDelete);
+      this.users = this.users.filter(h => h !== this.userToDelete);
+      this.pagedData = this.users;
       this.userService.deleteUser(this.userToDelete).subscribe();
     }
   }
