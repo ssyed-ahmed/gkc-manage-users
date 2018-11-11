@@ -93,6 +93,7 @@ export class UsersListComponent implements OnInit {
       this.users = this.users.filter(h => h !== this.userToDelete);
       this.pagedData = this.users;
       this.userService.deleteUser(this.userToDelete).subscribe();
+      this.totalPages = Math.ceil(this.users.length / this.pageSize);
     }
   }
 
@@ -126,6 +127,7 @@ export class UsersListComponent implements OnInit {
       return sortNum;
     })
     this.pagedData = this.users;
+    this.totalPages = Math.ceil(this.users.length / this.pageSize);
   }
 
   pageButtonDisabled(dir): boolean {
